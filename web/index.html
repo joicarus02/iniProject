@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700%7CMontserrat:300,400,600,700">
+		
+		<link rel="stylesheet" href="icons/fontawesome/css/fontawesome-all.min.css"><!-- FontAwesome Icons -->
+		<link rel="stylesheet" href="icons/Iconsmind__Ultimate_Pack/Line%20icons/styles.min.css"><!-- iconsmind.com Icons -->
+		
+		
+		<title>Media Streaming Application</title>
+	</head>
+	<body>
+		<div id="sidebar-bg">
+			
+      <header id="videohead-pro" class="sticky-header">
+			<div id="video-logo-background"><a href="dashboard-home.html"><img src="images/logo-video-layout.png" alt="Logo"></a></div>
+			
+			
+			<div id="mobile-bars-icon-pro" class="noselect"><i class="fas fa-bars"></i></div>
+			
+			
+		
+			
+		
+			
+			
+			<div class="clearfix"></div>
+			
+			<nav id="mobile-navigation-pro">
+			
+				<ul id="mobile-menu-pro">
+	            <li class="current-menu-item">
+	              <a href="dashboard-home.html">
+						<span class="icon-Old-TV"></span>
+	                TV Series
+	              </a>
+	            <li>
+	            <li>
+	              <a href="dashboard-movies.html">
+						<span class="icon-Reel"></span>
+	                Movies
+	              </a>
+	            </li>
+	            <li>
+	              <a href="dashboard-playlists.html">
+						<span class="icon-Movie"></span>
+	                Playlists
+	              </a>
+	            </li>
+	            <li>
+	              <a href="dashboard-new-arrivals.html">
+						<span class="icon-Movie-Ticket"></span>
+	                New Arrivals
+	              </a>
+	            </li>
+	            <li>
+	              <a href="dashboard-coming-soon.html">
+						<span class="icon-Clock"></span>
+	                Coming Soon
+	              </a>
+	            </li>
+	            <li>
+	              <a href="#!">
+						<i class="far fa-bell"></i>
+						<span class="user-notification-count">3</span>
+	                Notifications
+	              </a>
+	            </li>
+				</ul>
+				<div class="clearfix"></div>
+				
+				<div id="search-mobile-nav-pro">
+					<input type="text" placeholder="Search for Movies or TV Series" aria-label="Search">
+				</div>
+				
+			</nav>
+			
+      </header>
+		
+		
+		
+		<nav id="sidebar-nav"><!-- Add class="sticky-sidebar-js" for auto-height sidebar -->
+            <ul id="vertical-sidebar-nav" class="sf-menu">
+              <li class="normal-item-pro current-menu-item">
+                <a href="dashboard-home.html">
+						<span class="icon-Old-TV"></span>
+                  Video
+                </a>
+              </li>
+
+            </ul>
+				<div class="clearfix"></div>
+		</nav>
+	
+		<main id="col-main">
+			
+			
+			<div class="clearfix"></div>
+			
+			<div class="dashboard-container">
+				
+				<h4 class="heading-extra-margin-bottom"></h4>
+				
+				<div class="row">
+					
+					
+					
+					
+				</div><!-- close .row -->
+				
+				
+				<ul class="page-numbers">
+					<li><a class="previous page-numbers" href="#!"><i class="fas fa-chevron-left"></i></a></li>
+					<li><span class="page-numbers current">1</span></li>
+					<li><a class="next page-numbers" href="#!"><i class="fas fa-chevron-right"></i></a></li>
+				</ul>
+				
+						
+			</div><!-- close .dashboard-container -->
+		</main>
+		
+		
+		</div><!-- close #sidebar-bg-->
+		
+		<!-- Required Framework JavaScript -->
+		<script src="js/libs/jquery-3.3.1.min.js"></script><!-- jQuery -->
+		<script src="js/libs/popper.min.js" defer></script><!-- Bootstrap Popper/Extras JS -->
+		<script src="js/libs/bootstrap.min.js" defer></script><!-- Bootstrap Main JS -->
+		<!-- All JavaScript in Footer -->
+		
+		<script>
+			
+			$(function(){    
+				$.ajax({
+					type: "get",
+					async: false,
+					url: "http://172.104.104.47:8080/videoList",
+					dataType: "jsonp",
+					jsonp: "callback",
+					jsonpCallback:"jsonHandler",
+					
+				}); 
+			}); 
+
+			function jsonpCallback(response) {
+				var str = ""
+				$.each(response,function(i,n){    
+					str += `<div class="col-12 col-md-6 col-lg-4 col-xl-3">`;
+					str += `<div class="item-listing-container-skrn">`;
+					str += `<a href="http://172.104.104.47:8000/streams/${n.name}/${n.name}.m3u8"><img src="images/${n.name}.jpg" alt="Listing"></a>`;
+					str += `<div class="item-listing-text-skrn">`;
+					str += `<div class="item-listing-text-skrn-vertical-align"><h6><a href="dashboard-movie-profile.html">${n.name}</a></h6>`;
+					str += `</div>`;
+					str += `</div>`;
+					str += `</div>`;
+					str += `</div>`;
+					
+				});
+				
+				$(".row").append(str);   
+			}				
+		</script>    
+		
+		<!-- Additional Plugins and JavaScript -->
+		<script src="js/navigation.js" defer></script><!-- Header Navigation JS Plugin -->
+		<script src="js/jquery.flexslider-min.js" defer></script><!-- FlexSlider JS Plugin -->
+		<script src="js/jquery-asRange.min.js" defer></script><!-- Range Slider JS Plugin -->
+		<script src="js/circle-progress.min.js" defer></script><!-- Circle Progress JS Plugin -->
+		<script src="js/afterglow.min.js" defer></script><!-- Video Player JS Plugin -->
+		<script src="js/script.js" defer></script><!-- Custom Document Ready JS -->
+		<script src="js/script-dashboard.js" defer></script><!-- Custom Document Ready for Dashboard Only JS -->
+		
+		
+	</body>
+</html>
